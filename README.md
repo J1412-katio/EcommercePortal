@@ -48,7 +48,10 @@ Ecommerce_API/                 # FastAPI backend
 │  ├─ models/              # SQLAlchemy models
 │  │  ├─ cart.py
 │  │  ├─ order.py
-│  │  └─ product.py
+│  │  ├─ product.py
+|  |  ├─ order_item.py
+|  |  ├─ cart_item.py
+|  |  └─ order_status_history.py
 │  ├─ repositories/        # CRUD operations
 │  │  ├─ cart_repo.py
 │  │  ├─ order_repo.py

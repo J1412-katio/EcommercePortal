@@ -203,7 +203,7 @@ DATABASE
 --------------------------------------------------
 - MySQL 8.0
 - Database name: ecommerce_db
-- Tables are created using DDL script: backend/ddl.sql
+- Tables are created using DDL script: Ecommerce_API/db_setup.sql
 
 --------------------------------------------------
 NOTES

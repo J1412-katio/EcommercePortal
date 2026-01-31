@@ -15,7 +15,7 @@ Requirements
 --------------------------------------------------
 Project Structure
 --------------------------------------------------
-
+````
 src/
 ├─ api/            -> API client (Axios / fetch)
 ├─ components/     -> Reusable UI components
@@ -23,36 +23,49 @@ src/
 ├─ layout/         -> Layout and Navbar
 ├─ App.jsx
 └─ main.jsx
-
+````
 --------------------------------------------------
 Setup Instructions
 --------------------------------------------------
 
 1. Clone the repository
 
+````
    git clone <repository_url>
    cd Ecommerece_Web
-
+````
 2. Install dependencies
 
+ ````
    npm install
+ ````
    OR
+````
    yarn install
+````
 
 3. Configure API URL
 
    Open the file:
+   ````
    src/api/client.jsx
+   ````
 
    Ensure the backend URL is correct:
 
+   ````
    const API_BASE = "http://localhost:8000";
+   ````
 
-4. Start the development server
+5. Start the development server
 
+````
    npm run dev
+````
    OR
+````   
    yarn dev
+````
 
 5. Open the application in the browser
 

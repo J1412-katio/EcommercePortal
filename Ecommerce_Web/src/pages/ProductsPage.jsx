@@ -1,30 +1,52 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/client.jsx";
+import { errorAlert, successAlert } from "../component/alert.jsx";
 import ProductCard from "../component/ProductCard.jsx";
-import { successAlert, errorAlert } from "../component/alert.jsx";
 
-export default function ProductsPage() {
+export default function ProductsPage({ setCartCount }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    api.getProducts().then(setProducts).catch(() => errorAlert("Failed to load products"));
+    api.getProducts()
+      .then(setProducts)
+      .catch(() => errorAlert("Failed to load products"));
   }, []);
 
-  const handleAddToCart = async (productId) => {
+  const handleAddToCart = async (product, quantity) => {
     try {
-      await api.addToCart(productId);
+      await api.addToCart(product.id, quantity);
+      setCartCount(c => c + quantity);
       successAlert("Added to cart!");
     } catch {
       errorAlert("Failed to add to cart");
     }
   };
 
+  const handleBuyNow = async (product, quantity) => {
+    try {
+      await api.addToCart(product.id, quantity);
+      setCartCount(c => c + quantity);
+      window.location.href = "/cart";
+    } catch {
+      errorAlert("Failed to process Buy Now");
+    }
+  };
+
   return (
-    <div>
-      <h2>Products</h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "15px" }}>
+    <div className="container py-4">
+      <h2 className="text-center text-primary fw-bold mb-4">
+        Products
+      </h2>
+
+      <div className="row g-4">
         {products.map(p => (
-          <ProductCard key={p.id} product={p} onAdd={() => handleAddToCart(p.id)} />
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={p.id}>
+            <ProductCard
+              product={p}
+              onAdd={handleAddToCart}
+              onBuyNow={handleBuyNow}
+            />
+          </div>
         ))}
       </div>
     </div>

@@ -11,19 +11,20 @@ from app.models import (
 )
 from app.db.session import engine
 from app.db.base import Base
+
 # Create tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Ecommerce API")
 
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],  # or ["http://localhost:5173"]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 app.include_router(product_controller.router)
 print("Loading product controller...")
 app.include_router(cart_controller.router)

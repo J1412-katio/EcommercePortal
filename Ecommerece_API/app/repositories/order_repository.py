@@ -47,12 +47,41 @@ class OrderRepository:
         self.db.add(history)
         self.db.commit()
 
-    def list_orders_by_cart(self, cart_id: int) -> List[Order]:
-        return (
+    def list_orders_by_cart(self, cart_id: int):
+        orders = (
             self.db.query(Order)
             .filter(Order.cart_id == cart_id, Order.is_active == True)
             .all()
         )
+
+        result = []
+
+        for order in orders:
+            items = (
+                self.db.query(OrderItem, Product)
+                .join(Product, Product.id == OrderItem.product_id)
+                .filter(OrderItem.order_id == order.id)
+                .all()
+            )
+
+            item_list = [
+                {
+                    "product_id": row.OrderItem.product_id,
+                    "product_name": row.Product.name,
+                    "quantity": row.OrderItem.quantity,
+                    "unit_price": row.OrderItem.unit_price
+                }
+                for row in items
+            ]
+
+            result.append({
+                "id": order.id,
+                "status": order.status,
+                "total_amount": order.total_amount,
+                "items": item_list
+            })
+
+        return result
 
     def get_status_history(self, order_id: int) -> List[OrderStatusHistory]:
         return (

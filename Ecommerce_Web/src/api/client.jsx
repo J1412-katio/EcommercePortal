@@ -18,12 +18,23 @@ export const api = {
   getCart: () =>
     axios.get(`${API_BASE}/cart`, { params: { session_id: getSessionId() } }).then(res => res.data),
 
-  addToCart: (productId, quantity = 1) =>
-    axios.post(`${API_BASE}/cart/items`, { product_id: productId, quantity, session_id: getSessionId() }).then(res => res.data),
+  addToCart: async (productId, quantity = 1) => {
+  const res = await axios.post(`${API_BASE}/cart/items`, {
+    product_id: productId,
+    quantity,
+    session_id: getSessionId()
+  });
 
-  removeFromCart: (itemId) =>
-    axios.delete(`${API_BASE}/cart/items/${itemId}`, { params: { session_id: getSessionId() } }).then(res => res.data),
+  return res.data || { success: true };
+},
 
+removeFromCart: async (itemId) => {
+  const res = await axios.delete(`${API_BASE}/cart/items/${itemId}`, {
+    params: { session_id: getSessionId() }
+  });
+
+  return res.data || { success: true };
+},
   placeOrder: () =>
     axios.post(`${API_BASE}/orders/checkout`, null, { params: { session_id: getSessionId() } }).then(res => res.data),
 

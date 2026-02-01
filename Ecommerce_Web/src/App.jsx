@@ -3,17 +3,19 @@ import Layout from "./layout/Layout.jsx";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import OrdersPage from "./pages/OrdersPage.jsx";
+import { useState } from "react";
 
 export default function App() {
+  const [cartCount, setCartCount] = useState(0);
+
   return (
     <Router>
-      <Layout>
+      <Layout cartCount={cartCount}>
         <Routes>
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/orders" element={<OrdersPage />} />
-          <Route path="*" element={<Navigate to="/products" replace />} />
-        </Routes>
+  <Route path="/products" element={<ProductsPage setCartCount={setCartCount} />} />
+  <Route path="/cart" element={<CartPage setCartCount={setCartCount} />} />
+  <Route path="/orders" element={<OrdersPage setCartCount={setCartCount} />} />
+</Routes>
       </Layout>
     </Router>
   );

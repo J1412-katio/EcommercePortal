@@ -6,7 +6,7 @@ It handles products, session-based carts, orders, and order status management.
 ---
 
 ## Project Structure:
-
+````
 app/
 ├─ api/
 │  ├─ controllers/
@@ -21,7 +21,7 @@ app/
 ├─ schemas/
 ├─ services/
 └─ main.py
-
+````
 ---
 
 ## Requirements:
@@ -39,26 +39,38 @@ app/
    cd Ecommerece_API
 
 2. Create virtual environment and activate
+````
    python -m venv venv
+ ````
+````
    source venv/bin/activate   (Linux/macOS)
+ ````
+````
    venv\Scripts\activate      (Windows)
-
+````
 3. Install dependencies
+````
    pip install -r requirements.txt
-
+````
 4. Configure database
    Update .env with your MySQL credentials:
+   ````
    MYSQL_USER=user
    MYSQL_PASSWORD=RootPassword
    MYSQL_HOST=localhost
    MYSQL_PORT=3306
    MYSQL_DB=ecommerce_db
+   ````
 
-5. Create database and tables
+6. Create database and tables
+````
    mysql -u root -p < db_setup.sql
+ ````
 
 6. Run API server
+````
    uvicorn app.main:app --reload
+````
 
 API available at: http://localhost:8000
 

@@ -232,7 +232,7 @@ NOTES
 Results
 --------------------------------------------------
 ## 🛒 Products Page
-![Products Page](assets/images/productPage.png)
+![Products Page](assets/images/ProductPage.png)
 
 ## 🧺 Empty Cart
 ![Empty Cart](assets/images/emptycart.png)

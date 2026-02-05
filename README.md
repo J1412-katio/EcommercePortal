@@ -235,16 +235,16 @@ Results
 ![Products Page](assets/images/ProductPage.png)
 
 ## 🧺 Empty Cart
-![Empty Cart](assets/images/emptycart.png)
+![Empty Cart](assets/images/EmptyCart.png)
 
 ## 🛍️ Cart Page
-![Cart Page](assets/images/cartItems.png)
+![Cart Page](assets/images/CartItems.png)
 
 ## 📦 Orders Page
-![Orders Page](assets/images/orders.png)
+![Orders Page](assets/images/Orders.png)
 
 ## 📄 Order Details
-![Order Details](assets/images/orderDetails.png)
+![Order Details](assets/images/OrderDetails.png)
 
 
 

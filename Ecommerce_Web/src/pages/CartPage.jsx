@@ -15,28 +15,38 @@ export default function CartPage({ setCartCount }) {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
 
-  const loadCart = async () => {
-    try {
-      const cartData = await api.getCart();
-      const productData = await api.getProducts();
 
-      setProducts(productData);
+      const loadCart = async () => {
+  try {
+    const cartData = await api.getCart();
+    const productData = await api.getProducts();
 
-      const merged = cartData.map(item => {
-        const product = productData.find(p => p.id === item.product_id);
+    setProducts(productData);
 
-        return {
-          ...item,
-          product_name: product?.product_name || "(Product Missing)",
-          unit_price: product?.price || 0
-        };
-      });
+    let merged = cartData.map(item => {
+      const product = productData.find(p => p.id === item.product_id);
 
-      setCart(merged);
-    } catch {
-      errorAlert("Failed to load cart");
-    }
-  };
+      return {
+        ...item,
+        product_name: product?.product_name || "(Product Missing)",
+        unit_price: product?.price || 0
+      };
+    });
+
+    // FIX: sanitize invalid quantities
+    merged = merged.map(i => ({ ...i, quantity: Math.max(1, i.quantity) }));
+
+    setCart(merged);
+
+    // FIX: update badge correctly
+    const totalQty = merged.reduce((sum, item) => sum + item.quantity, 0);
+    setCartCount(totalQty);
+
+  } catch {
+    errorAlert("Failed to load cart");
+  }
+};
+
 
   useEffect(() => {
     loadCart();
@@ -61,10 +71,9 @@ export default function CartPage({ setCartCount }) {
     }
   };
 
-  const decreaseQty = async (item) => {
-    if (item.quantity === 1) return;
-
-    try {
+ const decreaseQty = async (item) => {
+  try {
+    if (item.quantity > 1) {
       // Update UI instantly
       setCart(prev =>
         prev.map(i =>
@@ -76,11 +85,17 @@ export default function CartPage({ setCartCount }) {
       await api.addToCart(item.product_id, -1);
 
       setCartCount(c => Math.max(0, c - 1));
-    } catch {
-      errorAlert("Failed to decrease quantity");
-    }
-  };
+    } else {
+      // Quantity is 1 → remove item
+      await api.removeFromCart(item.id);
 
+      setCart(prev => prev.filter(i => i.id !== item.id));
+      setCartCount(c => Math.max(0, c - 1));
+    }
+  } catch {
+    errorAlert("Failed to decrease quantity");
+  }
+};
   const handleRemove = async (itemId, quantity) => {
     try {
       await api.removeFromCart(itemId);

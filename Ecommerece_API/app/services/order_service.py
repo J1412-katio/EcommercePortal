@@ -57,6 +57,7 @@ class OrderService:
                 "id": order.id,
                 "status": order.status,
                 "total_amount": order.total_amount,
+                "created_at": order.created_at,
                 "items": item_list
             })
 

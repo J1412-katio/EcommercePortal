@@ -35,7 +35,7 @@ export default function OrdersPage() {
         <div style={{ width: "15%" }}>Order No</div>
         <div style={{ width: "20%" }}>Status</div>
         <div style={{ width: "20%" }}>Placed On</div>
-        <div style={{ width: "20%" }}>Cancel / Update</div>
+        <div style={{ width: "20%" }}>Actions</div>
         <div style={{ width: "25%" }}>Total </div>
       </div>
 

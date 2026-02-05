@@ -14,10 +14,19 @@ export default function OrderCard({ order }) {
     ? new Date(order.created_at).toLocaleDateString()
     : "N/A";
 
+  const handleCancelOrder = () => {
+  console.log("Cancel order:", order.id);
+  // later: call API to cancel
+};
+
+const handleUpdateOrder = () => {
+  console.log("Update order:", order.id);
+  // later: open update modal or page
+};
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
       case "placed":
-        return "bg-warning text-dark";
+        return "bg-gray text-dark";
       case "shipped":
         return "bg-info text-dark";
       case "delivered":
@@ -57,11 +66,11 @@ export default function OrderCard({ order }) {
           {formattedDate}
         </div>
 
-        {/* Cancel / Update */}
-        {/*<div style={{ width: "20%" }}>*/}
-        {/*  <button className="btn btn-sm btn-outline-danger me-2">Cancel</button>*/}
-        {/*  <button className="btn btn-sm btn-outline-warning">Update</button>*/}
-        {/*</div>*/}
+         {/*Cancel / Update */}
+        <div style={{ width: "20%" }}>
+          <button className="btn btn-sm btn-danger me-2" onClick={handleCancelOrder}>Cancel</button>
+          <button className="btn btn-sm btn-warning text-white" onClick={handleUpdateOrder}>Update</button>
+        </div>
 
         {/* Total + Details */}
         <div style={{ width: "25%" }}>

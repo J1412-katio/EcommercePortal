@@ -43,6 +43,15 @@ Setup Instructions
 ````
    yarn install
 ````
+SweetAlert2 - a beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes
+````
+    npm install --save sweetalert2
+````
+   vector icons and social logos easily customizable with CSS
+````
+    npm install --save font-awesome-icons
+ ````
+
 
 3. Configure API URL
 

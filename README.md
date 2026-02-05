@@ -24,6 +24,7 @@ Containerization:
 - Docker
 - Docker Compose
 
+
 ------------------------------------------------
  Project Structure
 ------------------------------------------------
@@ -105,21 +106,7 @@ FEATURES
 - Place orders
 - Track order status
 
---------------------------------------------------
-RUN LOCALLY (DOCKER)
---------------------------------------------------
-Prerequisites:
-- Docker
-- Docker Compose
 
-Steps:
-1. Clone the repository
-2. Navigate to project root
-3. Run:
-
-    ````
-       docker-compose up --build
-    ````
 --------------------------------------------------
 RUN LOCALLY (WITHOUT DOCKER)
 --------------------------------------------------
@@ -184,6 +171,15 @@ Backend API will run at: http://localhost:8000
      ````
    npm install
     ````
+   SweetAlert2 - a beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes
+   ````
+    npm install --save sweetalert2
+   ````
+   vector icons and social logos easily customizable with CSS
+    ````
+    npm install --save font-awesome-icons
+   ````
+
 
 3. Start development server:
      ````
@@ -191,19 +187,40 @@ Backend API will run at: http://localhost:8000
      ````
 Frontend will run at: http://localhost:5173
 
+---------------------------------------
+RUN LOCALLY (DOCKER)
+--------------------------------------------------
+Prerequisites:
+- Docker
+- Docker Compose
+
+Steps:
+1. Clone the repository
+2. Navigate to project root
+3. Run:
+    ````
+   docker-compose up --build
+   ````
+
 --------------------------------------------------
 APPLICATION URLS
 --------------------------------------------------
-Frontend: http://localhost:5173
-Backend API: http://localhost:8000
-Swagger API Docs: http://localhost:8000/docs
+Frontend:
+http://localhost:5173
+
+Backend API:
+http://localhost:8000
+
+Swagger API Docs:
+http://localhost:8000/docs
 
 --------------------------------------------------
 DATABASE
 --------------------------------------------------
 - MySQL 8.0
 - Database name: ecommerce_db
-- Tables are created using DDL script: Ecommerce_API/db_setup.sql
+- Tables are created using DDL script:
+  backend/db_schema.sql
 
 --------------------------------------------------
 NOTES
@@ -211,10 +228,29 @@ NOTES
 - No authentication (guest checkout)
 - Clean architecture: Controller → Service → Repository
 - Designed for simplicity and clarity
+-------------------------------------------------
+Results
+--------------------------------------------------
+## 🛒 Products Page
+![Products Page](assets/images/productPage.png)
+
+## 🧺 Empty Cart
+![Empty Cart](assets/images/emptycart.png)
+
+## 🛍️ Cart Page
+![Cart Page](assets/images/cartItems.png)
+
+## 📦 Orders Page
+![Orders Page](assets/images/orders.png)
+
+## 📄 Order Details
+![Order Details](assets/images/orderDetails.png)
+
+
+
 
 --------------------------------------------------
 AUTHOR
 --------------------------------------------------
 Joyce Junapudi
 Submitted as part of a technical assignment
-
